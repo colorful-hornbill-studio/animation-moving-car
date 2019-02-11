@@ -2,7 +2,7 @@
 
 ## Description
 
-This is animation created using JDK 8 and NetBeans IDE 8
+This is animation created using JDK 8 and NetBeans IDE 8.
 
 ## Table of Contents
 
@@ -12,7 +12,7 @@ This is animation created using JDK 8 and NetBeans IDE 8
    - [Prerequisites](#prerequisites)
    - [Installation](#installation)
    - [Usage](#usage)
-   - [previews](#previews)
+   - [Previews](#previews)
      - [Screenshots](#screenshots)
      - [Videos](#videos)
 4. [Credits](#credits)
