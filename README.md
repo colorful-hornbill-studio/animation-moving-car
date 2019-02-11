@@ -41,7 +41,7 @@ This is animation created using JDK 8 and NetBeans IDE 8
 
 #### Screenshots
 
-![Screenshot](https://justanaivedreamer.wordpress.com/)
+![Screenshot](https://justanaivedreamer.files.wordpress.com/2019/02/capture.png)
 
 #### Videos
 
