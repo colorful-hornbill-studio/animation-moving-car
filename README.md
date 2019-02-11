@@ -37,7 +37,7 @@ This is animation created using JDK 8 and NetBeans IDE 8
 
 ### Previews
 
-![Preview](https://drive.google.com/file/d/1g7W94mu2_tdtbElwEXloqdY3K6nTp1xw/view)
+[Preview](https://drive.google.com/file/d/1g7W94mu2_tdtbElwEXloqdY3K6nTp1xw/view)
 
 ## Credits
 
