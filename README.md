@@ -27,7 +27,7 @@ This is animation created using JDK 8 and NetBeans IDE 8.
 2. JDK 8
 3. JRE 8
 
-#### Installation
+### Installation
 
 1. Extract file ```animation-moving-car-master.zip``` in your NetBeans projects folder
 
