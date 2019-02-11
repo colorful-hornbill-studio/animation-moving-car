@@ -13,6 +13,8 @@ This is animation created using JDK 8 and NetBeans IDE 8
    - [Installation](#installation)
    - [Usage](#usage)
    - [previews](#previews)
+     - [Screenshots](#screenshots)
+     - [Videos](#videos)
 4. [Credits](#credits)
 5. [License](#license)
 
@@ -37,7 +39,13 @@ This is animation created using JDK 8 and NetBeans IDE 8
 
 ### Previews
 
-[Preview](https://drive.google.com/file/d/1g7W94mu2_tdtbElwEXloqdY3K6nTp1xw/view)
+#### Screenshots
+
+![Screenshot](https://justanaivedreamer.wordpress.com/)
+
+#### Videos
+
+[Video](https://drive.google.com/file/d/1g7W94mu2_tdtbElwEXloqdY3K6nTp1xw/view)
 
 ## Credits
 
