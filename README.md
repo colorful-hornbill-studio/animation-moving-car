@@ -45,7 +45,7 @@ This is animation created using JDK 8 and NetBeans IDE 8.
 
 #### Videos
 
-[Video Link](https://drive.google.com/file/d/1g7W94mu2_tdtbElwEXloqdY3K6nTp1xw/view)
+[Video Link](https://drive.google.com/open?id=1Ch7kLPLGHm4IdclBcdIz-q-p8608LN1X)
 
 ## Credits
 
