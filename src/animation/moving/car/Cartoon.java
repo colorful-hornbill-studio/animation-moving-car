@@ -1,26 +1,53 @@
-package cartoon;
+package animation.moving.car;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.geom.*;
-import java.awt.event.*;
-import java.io.*;
-import javax.sound.sampled.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLDecoder;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class Cartoon extends JPanel {
-    private static final GeneralPath MOUNTAIN = new GeneralPath(); // Field for paint mountain 
-    private static final GeneralPath VANE = new GeneralPath(); // Field for paint vane of windmill
-    private static final GeneralPath STAR = new GeneralPath(); // Field for paint star
-
     private static final double[] LIMITS = new double[] {0, 7, 4, -1};
+    private static final GeneralPath MOUNTAIN = new GeneralPath(); // Field for paint mountain 
+    private static final GeneralPath STAR_1 = new GeneralPath(); // Field for paint star 1
+    private static final GeneralPath STAR_2 = new GeneralPath(); // Field for paint star 2
+    private static final GeneralPath VANE = new GeneralPath(); // Field for paint vane of windmill
 
+    private final URL PATH_1 = this.getClass().getResource("/bmw.wav");
+    private final URL PATH_3 = this.getClass().getResource("/jungle.wav");
+    
+    private static float size = 0;
     private static int number1 = 0; // Number for move cars and plane
     private static int number2 = 0; // Numbers (number2, number3, number4, and number5) for change day and night (Possible values is 0 or 1)
     private static int number3 = 375;
     private static int number4 = 1;
     private static int number5 = 0;
-
-    private static float size = 0;
+    
+    private String path2;
+    private String path4;
 
     public Cartoon() {
         /**
@@ -29,31 +56,41 @@ public class Cartoon extends JPanel {
         this.setPreferredSize(new Dimension(720, 500));
 
         /**
-         * Paint star
-         */
-        Cartoon.STAR.moveTo(4.5, 2.0); // Set starting point to center
-        Cartoon.STAR.lineTo(4.75, 2.03);
-        Cartoon.STAR.lineTo(4.78, 2.28);
-        Cartoon.STAR.lineTo(4.81, 2.03);
-        Cartoon.STAR.lineTo(5.06, 2.0);
-        Cartoon.STAR.lineTo(4.81, 1.97);
-        Cartoon.STAR.lineTo(4.78, 1.72);
-        Cartoon.STAR.lineTo(4.75, 1.97);
-        Cartoon.STAR.closePath();
-
-        /**
          * Paint mountain
          */
         Cartoon.MOUNTAIN.moveTo(0, -1); // Set starting point to bottom left
         Cartoon.MOUNTAIN.lineTo(0, 0.7);
-        Cartoon.MOUNTAIN.lineTo(1.5, 1.60);
-        Cartoon.MOUNTAIN.lineTo(1.8, 1.3);
-        Cartoon.MOUNTAIN.lineTo(3, 2.1);
-        Cartoon.MOUNTAIN.lineTo(4.7, 0.7);
-        Cartoon.MOUNTAIN.lineTo(6.1, 1.2);
+        Cartoon.MOUNTAIN.curveTo(1.5, 1.6, 1.5, 1.3, 1.8, 1.3);
+        Cartoon.MOUNTAIN.lineTo(2.7, 1.9);
+        Cartoon.MOUNTAIN.curveTo(3.0, 2.15, 3.0, 2.15, 3.3, 1.9);
+        Cartoon.MOUNTAIN.lineTo(4.7, 1.1);
+        Cartoon.MOUNTAIN.lineTo(6.1, 1.6);
         Cartoon.MOUNTAIN.lineTo(9, 0.8);
         Cartoon.MOUNTAIN.lineTo(9, -1);
         Cartoon.MOUNTAIN.closePath();
+        
+        /**
+         * Paint star
+         */
+        Cartoon.STAR_1.moveTo(4.5, 2.0); // Set starting point to center
+        Cartoon.STAR_1.lineTo(4.75, 2.03);
+        Cartoon.STAR_1.lineTo(4.78, 2.28);
+        Cartoon.STAR_1.lineTo(4.81, 2.03);
+        Cartoon.STAR_1.lineTo(5.06, 2.0);
+        Cartoon.STAR_1.lineTo(4.81, 1.97);
+        Cartoon.STAR_1.lineTo(4.78, 1.72);
+        Cartoon.STAR_1.lineTo(4.75, 1.97);
+        Cartoon.STAR_1.closePath();
+
+        Cartoon.STAR_2.moveTo(2.5, 3.0); // Set starting point to center
+        Cartoon.STAR_2.lineTo(2.75, 3.03);
+        Cartoon.STAR_2.lineTo(2.78, 3.28);
+        Cartoon.STAR_2.lineTo(2.81, 3.03);
+        Cartoon.STAR_2.lineTo(3.06, 3.0);
+        Cartoon.STAR_2.lineTo(2.81, 2.97);
+        Cartoon.STAR_2.lineTo(2.78, 2.72);
+        Cartoon.STAR_2.lineTo(2.75, 2.97);
+        Cartoon.STAR_2.closePath();
 
         /**
          * Paint vane for windmill
@@ -63,6 +100,14 @@ public class Cartoon extends JPanel {
         Cartoon.VANE.lineTo(1.5, 0);
         Cartoon.VANE.lineTo(0.5, -0.1);
         Cartoon.VANE.closePath();
+
+        try {
+            this.path2 = URLDecoder.decode(this.PATH_1.getPath(), "ASCII").replace('\\', '/');
+
+            this.path4 = URLDecoder.decode(this.PATH_3.getPath(), "ASCII").replace('\\', '/');
+        } catch(UnsupportedEncodingException err) {
+            System.out.println(err);
+        }
 
         /**
          * Set timer for repaint
@@ -104,11 +149,19 @@ public class Cartoon extends JPanel {
         /**
          * Set timer for background sound
          */
-        new Timer(5000, new ActionListener() {
+        new Timer(9000, new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                Cartoon.playSound();
+                playSound1();
             }
         }).start();
+        
+        new Timer(5000, new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                playSound2();
+            }
+        }).start();
+
+        this.playSound1();
     }
 
     protected void paintComponent(Graphics g) {
@@ -136,12 +189,13 @@ public class Cartoon extends JPanel {
             g2D.setColor(new Color(0, 200, 200));
         }
 
-        g2D.fill(Cartoon.STAR); // Paint star
+        g2D.fill(Cartoon.STAR_1); // Paint star
+        g2D.fill(Cartoon.STAR_2); // Paint star
 
         /**
          * Fill land and mountain with green color
          */
-        g2D.setColor(new Color(51, 204, 51));
+        g2D.setColor(new Color(237, 201, 175));
         g2D.fill(Cartoon.MOUNTAIN);
 
         /**
@@ -188,13 +242,13 @@ public class Cartoon extends JPanel {
         paintWindmill(g2D); // Paint first windmill
 
         g2D.setTransform(transform);
-        g2D.translate(2.3, 1.5); // Place second windmill
+        g2D.translate(2.6, 1.5); // Place second windmill
         g2D.scale(0.4, 0.4); // Make second windmill to be bigger
 
         paintWindmill(g2D); // Paint second windmill
 
         g2D.setTransform(transform);
-        g2D.translate(4.0, 0.8); // Place third windmill
+        g2D.translate(5.0, 0.8); // Place third windmill
         g2D.scale(0.7, 0.7); // Make third windmill to be bigger
 
         paintWindmill(g2D); // Paint third windmill
@@ -290,7 +344,7 @@ public class Cartoon extends JPanel {
          * Set color of first car for day and night
          */
         if(Cartoon.number2 == 0) {
-            g2D.setColor(Color.RED);
+            g2D.setColor(Color.MAGENTA);
         } else {
             g2D.setColor(new Color(150, 0, 0));
         }
@@ -328,7 +382,7 @@ public class Cartoon extends JPanel {
          * Set color of second car for day and night
          */
         if(Cartoon.number2 == 0) {
-            g2D.setColor(Color.BLUE);
+            g2D.setColor(Color.ORANGE);
         } else {
             g2D.setColor(new Color(0, 175, 0));
         }
@@ -349,7 +403,7 @@ public class Cartoon extends JPanel {
          * Set color of plane for day and night
          */
         if(Cartoon.number2 == 0) {
-            g2D.setColor(new Color(0, 0, 128));
+            g2D.setColor(new Color(0, 225, 175));
         } else {
             g2D.setColor(new Color(175, 0, 0));
         }
@@ -391,20 +445,36 @@ public class Cartoon extends JPanel {
         }
     }
     
-    public static void playSound() {
+    public void playSound1() {
         try {
-            File VAWFile = new File("A:/Downloads/BMW+DRIVEBY.wav");
+            File VAWFile = new File(this.path2);
 
             AudioInputStream sound = AudioSystem.getAudioInputStream(VAWFile);
             AudioFormat format = sound.getFormat();
 
             DataLine.Info info = new DataLine.Info(Clip.class, format);
-
             Clip audioClip = (Clip) AudioSystem.getLine(info);
-            
+
             audioClip.open(sound);
             audioClip.start();
-        } catch(UnsupportedAudioFileException | IOException | LineUnavailableException err) {
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException err) {
+            System.out.println(err);
+        }
+    }
+    
+    public void playSound2() {
+        try {
+            File VAWFile = new File(this.path4);
+
+            AudioInputStream sound = AudioSystem.getAudioInputStream(VAWFile);
+            AudioFormat format = sound.getFormat();
+
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            Clip audioClip = (Clip) AudioSystem.getLine(info);
+
+            audioClip.open(sound);
+            audioClip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException err) {
             System.out.println(err);
         }
     }
@@ -417,8 +487,6 @@ public class Cartoon extends JPanel {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-
-        Cartoon.playSound();
     }
 }
 
