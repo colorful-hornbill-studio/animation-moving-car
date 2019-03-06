@@ -43,10 +43,6 @@ This is animation created using JDK 8 and NetBeans IDE 8.
 
 ![Screenshot](https://justanaivedreamer.files.wordpress.com/2019/03/capture12.png)
 
-#### Videos
-
-[Video Link](https://drive.google.com/open?id=1Ch7kLPLGHm4IdclBcdIz-q-p8608LN1X)
-
 ## Credits
 
 - [A Naive Dreamer](https://github.com/A-Naive-Dreamer)
