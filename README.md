@@ -30,12 +30,11 @@ This is animation created using JDK 8 and NetBeans IDE 8.
 ### Installation
 
 1. Extract file ```animation-moving-car-master.zip``` in your NetBeans projects folder.
+2. Rename folder ```animation-moving-car-master``` to ```animation-moving-car```.
 
 ### Usage
 
-1. Open extracted folder.
-2. Go to ```dist``` folder.
-3. Select file ```Cartoon.jar```
+1. Open project ```animation-moving-car``` in NetBeans IDE.
 
 ### Previews
 
