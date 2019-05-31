@@ -9,7 +9,7 @@ This is animation created using JDK 8 and NetBeans IDE 8.
 1. [Description](#description)
 2. [Table of Contents](#table-of-contents)
 3. [Getting Started](#getting-started)
-   - [Prerequisites](#prerequisites)
+   - [Requirements](#requirements)
    - [Installation](#installation)
    - [Usage](#usage)
    - [Screenshots](#screenshots)
@@ -19,7 +19,7 @@ This is animation created using JDK 8 and NetBeans IDE 8.
 
 ## Getting Started
 
-### Prerequisites
+### Requirements
 
 1. NetBeans IDE 8
 2. JDK 8
