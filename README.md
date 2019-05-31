@@ -36,9 +36,7 @@ This is animation created using JDK 8 and NetBeans IDE 8.
 
 1. Open project ```animation-moving-car``` in NetBeans IDE.
 
-### Previews
-
-#### Screenshots
+### Screenshots
 
 ![Screenshot](https://justanaivedreamer.files.wordpress.com/2019/03/capture12.png)
 
