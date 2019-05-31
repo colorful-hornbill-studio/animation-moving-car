@@ -12,9 +12,7 @@ This is animation created using JDK 8 and NetBeans IDE 8.
    - [Prerequisites](#prerequisites)
    - [Installation](#installation)
    - [Usage](#usage)
-   - [Previews](#previews)
-     - [Screenshots](#screenshots)
-     - [Videos](#videos)
+   - [Screenshots](#screenshots)
 4. [Credits](#credits)
 5. [License](#license)
 
