@@ -40,8 +40,8 @@ This is animation created using JDK 8 and NetBeans IDE 8.
 
 ## Credits
 
-1. [A Naive Dreamer](https://github.com/A-Naive-Dreamer)
-2. [Normal Person 01](https://github.com/NormalPerson01)
+1. [Atallabela Yosua](https://github.com/A-Naive-Dreamer)
+2. [Joshua Maha Sukma](https://github.com/NormalPerson01)
 
 ## License
 
